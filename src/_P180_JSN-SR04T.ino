@@ -4,9 +4,10 @@
 /*
   Plugin written by: Marcus Schwager mwulf12__AT__gmx.net
 
-  This plugin reads the co2 value of UltraSonic Distance Sensors.
+  This plugin reads the distance value of UltraSonic Sensors with serial interface:
   DYP-ME007Y-TX / JSN-SR04T
 
+  RX=GPIO Setting 1, TX=GPIO Setting 2, Use 1kOhm in serie on datapins!
 */
 
 #define PLUGIN_180
@@ -58,11 +59,21 @@ boolean Plugin_180(byte function, struct EventStruct *event, String& string)
         break;
       }
 
+      case PLUGIN_WEBFORM_LOAD:
+        {
+          string += F("<TR><TD>Input :<TD>RX=1st GPIO, TX=2nd GPIO");
+          string += F("<TR><TD>Output :<TD>distance in Millimeter use '%value%/10' for cm");
+          string += F("<TR><TD>Wiring :<TD>Use 1kOhm in serie on datapins!");
+
+          success = true;
+          break;
+        }
+
     case PLUGIN_INIT:
       {
         Plugin_180_init = true;
         Plugin_180_4T = new SoftwareSerial(Settings.TaskDevicePin1[event->TaskIndex], Settings.TaskDevicePin2[event->TaskIndex]);
-        // TODO: Explain this in plugin description RX=GPIO Setting 1, TX=GPIO Setting 2, Use 1kOhm in serie on datapins!
+
         success = true;
         break;
       }
