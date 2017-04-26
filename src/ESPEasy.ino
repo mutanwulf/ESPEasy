@@ -48,6 +48,7 @@
 //   Arduino Pro Mini with IO extender sketch, connected through I2C
 //   LCD I2C display 4x20 chars
 //   HC-SR04 Ultrasonic distance sensor
+//   JSN-SR04T Ultrasonic serial distance sensor
 //   SI7021 I2C temperature/humidity sensors
 //   TSL2561 I2C Luminosity sensor
 //   TSOP4838 IR receiver
